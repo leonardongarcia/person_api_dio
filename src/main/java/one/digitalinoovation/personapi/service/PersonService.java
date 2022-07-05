@@ -8,6 +8,9 @@ import one.digitalinoovation.personapi.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PersonService {
 
@@ -15,6 +18,9 @@ public class PersonService {
 
   private final PersonMapper personMapper = PersonMapper.INSTANCE;
 
+  public List<Person> listAll(){
+    return personRepository.findAll();
+  }
   public MessageResponseDTO save(PersonDTO personDTO) {
     Person personToSave = personMapper.toModel(personDTO);
 
