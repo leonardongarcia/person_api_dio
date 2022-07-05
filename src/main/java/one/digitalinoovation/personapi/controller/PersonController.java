@@ -18,10 +18,11 @@ public class PersonController {
   @Autowired private PersonService personService;
 
   @GetMapping
-  public List<Person> listAll(){
+  public List<PersonDTO> listAll(){
     return personService.listAll();
   }
-  @PostMapping
+
+
   @ResponseStatus(HttpStatus.CREATED)
   public MessageResponseDTO post(@RequestBody @Valid PersonDTO personDTO) {
     return personService.save(personDTO);

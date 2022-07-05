@@ -14,5 +14,5 @@ public interface PersonMapper {
   @Mapping(target = "birthDate", source = "birthDate")
   Person toModel(PersonDTO personDTO);
 
-  Person toDTO(Person person);
+  PersonDTO toDTO(Person person);
 }
