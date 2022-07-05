@@ -1,7 +1,9 @@
 package one.digitalinoovation.personapi.service;
 
 import one.digitalinoovation.personapi.dto.MessageResponseDTO;
+import one.digitalinoovation.personapi.dto.request.PersonDTO;
 import one.digitalinoovation.personapi.entity.Person;
+import one.digitalinoovation.personapi.mapper.PersonMapper;
 import one.digitalinoovation.personapi.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,14 +11,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonService {
 
-    @Autowired
-    private PersonRepository personRepository;
+  @Autowired private PersonRepository personRepository;
 
-    public MessageResponseDTO save(Person person){
-        Person savedPerson = personRepository.save(person);
-    return MessageResponseDTO
-            .builder()
-            .message("Created person with ID " + savedPerson.getId())
-            .build();
-    }
+  private final PersonMapper personMapper = PersonMapper.INSTANCE;
+
+  public MessageResponseDTO save(PersonDTO personDTO) {
+    Person personToSave = personMapper.toModel(personDTO);
+
+    Person savedPerson = personRepository.save(personToSave);
+    return MessageResponseDTO.builder()
+        .message("Created person with ID " + savedPerson.getId())
+        .build();
+  }
 }
