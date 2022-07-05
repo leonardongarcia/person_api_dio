@@ -2,7 +2,7 @@ package one.digitalinoovation.personapi.controller;
 
 import one.digitalinoovation.personapi.dto.MessageResponseDTO;
 import one.digitalinoovation.personapi.dto.request.PersonDTO;
-import one.digitalinoovation.personapi.entity.Person;
+import one.digitalinoovation.personapi.exception.PersonNotFoundException;
 import one.digitalinoovation.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,11 +18,16 @@ public class PersonController {
   @Autowired private PersonService personService;
 
   @GetMapping
-  public List<PersonDTO> listAll(){
+  public List<PersonDTO> listAll() {
     return personService.listAll();
   }
 
+  @GetMapping("{id}")
+  public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+    return personService.findById(id);
+  }
 
+  @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public MessageResponseDTO post(@RequestBody @Valid PersonDTO personDTO) {
     return personService.save(personDTO);
