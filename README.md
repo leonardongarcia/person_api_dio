@@ -16,12 +16,14 @@ Com esse projeto foi possível aprender e revisar alguns conceitos indispensáve
 * Scrum
 * Padrão arquitetural REST
 * Desenvolvimento em camadas
+* Teste unitário com JUnit
 
 ## Tecnologias utilizadas
 
 * Java 17
 * Maven
 * Git
+* JUnit
 * Spring Boot
 * Spring Data Jpa
 * IntelliJ IDEA
