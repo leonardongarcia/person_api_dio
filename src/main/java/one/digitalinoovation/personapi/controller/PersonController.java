@@ -1,5 +1,6 @@
 package one.digitalinoovation.personapi.controller;
 
+import lombok.AllArgsConstructor;
 import one.digitalinoovation.personapi.dto.MessageResponseDTO;
 import one.digitalinoovation.personapi.dto.request.PersonDTO;
 import one.digitalinoovation.personapi.exception.PersonNotFoundException;
@@ -13,9 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/peoples")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonController {
 
-  @Autowired private PersonService personService;
+  private PersonService personService;
 
   @GetMapping
   public List<PersonDTO> listAll() {
